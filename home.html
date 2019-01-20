@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+   <body>
+  {% with messages = get_flashed_messages() %}
+         {% if messages %}
+       
+               {% for message in messages %}
+               <h2><font color="red">{{ message }}</font></h2>
+               {% endfor %}
+         {% endif %}
+      {% endwith %}
+<div class="row">
+  <div class="column" style="background-color:#aaa;">
+    <h2>Create Form</h2>
+   <form action = "http://127.0.0.1:5000/get_dimensions" method = "POST">
+         <p>User id <input type = "text" name = "user_id" /></p>
+ 	<p>Product id <input type = "text" name = "product_id" /></p>
+         <p><input type = "submit" value = "submit" /></p>    
+</form>
+  </div>
+   </body>
+</html> 
