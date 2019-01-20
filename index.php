@@ -1,16 +1,17 @@
-	<?php
+<?php
 	session_start();
 	if(isset($_SESSION['uname'])){
 	    $Welcome_msg = "Welcome ".$_SESSION['uname']."!";
 	    $User_Name = $_SESSION['uname'];
-		echo $User_Name;
+		//echo $User_Name;
+		echo "<script>location.href = 'welcome.php';</script>";
 	    //echo $Welcome_msg;
 	    // echo "<script>
 	    // 	document.getElementById('welcome_text').innerHTML = ".$Welcome_msg.";
 	    // </script>";
 	} else {
 		session_destroy();
-		//echo "<script>location.href = 'index.html';</script>";
+		//echo "<script>location.href = 'index.php';</script>";
 	}
 ?> 
 
@@ -30,7 +31,6 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 		<!-- Custom styles for this template -->
 		<link href="css/style.css" rel="stylesheet">
-		<link href="css/style-2.css" rel="stylesheet">
 	</head>
 	<body id="page-top">
 		<!-- Navigation -->
@@ -53,28 +53,16 @@
 							<a href="#page-top"></a>
 						</li>
 						<li>
-							<a onclick="submit_virtual_recommendation()">Virtual Recommendation</a>
-						</li>
-						<li>
 							<a class="page-scroll" href="#about">About</a>
 						</li>
 						<li>
 							<a class="page-scroll" href="#team">Team</a>
 						</li>
-						<li style = "cursor:pointer;">
-							<!-- <a class="page-scroll" type="submit" name="log_out_button">Log Out</a> -->
-
-							<a class="page-scroll" onclick="event.preventDefault();
-							    document.getElementById('magic-form').submit();">
-							    Log Out
-							</a>
-							<form id="magic-form" action="logout.php" 
-							      method="POST" style="display: none;">
-							      <!-- {{ csrf_field() }}  --><!-- from your framework -->
-							      <input type="hidden" name="field1" value="value1" />
-							      <!-- other fields -->
-							</form>
+						<li>
+							<a class="page-scroll" href="#contact">Register</a>
 						</li>
+
+
 						
 					</ul>
 					</ul>
@@ -88,7 +76,7 @@
 		
 
 
-<!-- <form class="form-inline" action="login.php" style="float:right; margin-right:40px;" method="post">
+<form class="form-inline" action="login.php" style="float:right; margin-right:40px;" method="post">
   <div class="form-group">
     <label for="username">Username: </label>
     <input type="text" name="login_username" class="form-control" id="email">
@@ -98,9 +86,12 @@
     <input type="password" name="login_pwd" class="form-control" id="pwd">
   </div>
   <input type="submit" name="login_button" value="Submit" class="btn btn-default">
-</form> -->
+</form>
 
-	<h2 style="float:right; margin-right:200px;" id="welcome_text"><b>Welcome</b></h2>
+
+
+
+
 		<section id="portfolio">
 			<div class="container">
 			<div class="row">
@@ -113,110 +104,37 @@
 			</div>
 			<div class="row row-0-gutter">
 				<!-- start portfolio item -->
-				<div class="col-md-6 col-0-gutter" onclick="submit_spectacles_form()">
-					<!--onclick="location.href='spectacles.php'"-->
+				<div class="col-md-6 col-0-gutter">
 					<div class="ot-portfolio-item">
 						<figure class="effect-bubba">
 							<img src="images/Model/glasses.jpg" alt="img02" class="img-responsive" width ="1000" />
 							<figcaption>
 								<h2>Glasses</h2>
 								<p>Spectacles, Sunglasses</p>
-								<a>View more</a>
-								<!--data-toggle="modal" data-target="#Modal-1"-->
+								<a href="#" data-toggle="modal" data-target="#Modal-1">View more</a>
 							</figcaption>
 						</figure>
 					</div>
 				</div>
-
-				<script type="text/javascript">
-					function submit_spectacles_form(){
-						var username = "<?php echo $User_Name; ?>";
-						//alert(username); 
-						var form = document.createElement("form");
-						var element1 = document.createElement("input");
-						var element2 = document.createElement("input");
-
-						form.method = "POST";
-						form.action = "http://127.0.0.1:5000/put_glasses"; //submit the form to rishi
-
-						element1.value = username; //get username from php
-						element1.name = "user_id";
-
-						form.appendChild(element1);
-
-						element2.value = 1;//index of product image
-						element2.name = "product_id";
-
-						form.appendChild(element2);
-
-						document.body.appendChild(form);
-						form.submit();
-
-					}
-					
-				</script>
 				<!-- end portfolio item -->
 				<!-- start portfolio item -->
-				<div class="col-md-6 col-0-gutter" onclick="submit_lipstick_form()">
+				<div class="col-md-6 col-0-gutter">
 					<div class="ot-portfolio-item">
 						<figure class="effect-bubba">
 							<img src="images/Model/lipstick.jpg" alt="img02" class="img-responsive" width ="1000" />
 							<figcaption>
 								<h2>Facial Products</h2>
 								<p>Lipsticks</p>
-								<a >View more</a>
-								<!--data-toggle="modal" data-target="#Modal-2"-->
+								<a href="#" data-toggle="modal" data-target="#Modal-2">View more</a>
 							</figcaption>
 						</figure>
 					</div>
 				</div>
 				<!-- end portfolio item -->
 			</div>
-
-			<script type="text/javascript">
-					function submit_lipstick_form(){
-						var username = "<?php echo $User_Name; ?>";
-						var form = document.createElement("form");
-						var element1 = document.createElement("input");
-						var element2 = document.createElement("input");
-						var element3 = document.createElement("input");
-						var element4 = document.createElement("input");
-						var element5 = document.createElement("input");
-
-						form.method = "POST";
-						form.action = "http://127.0.0.1:5000/put_lipstick"; //submit the form to rishi
-
-						element1.value = username; //get username from php
-						element1.name = "user_id";
-
-						form.appendChild(element1);
-
-						element2.value = 1;//index of product image
-						element2.name = "product_id";
-
-						element3.value = 153;
-						element3.name = "red"
-
-						element4.value = 0;
-						element4.name = "green";
-
-						element5.value = 76;
-						element5.name = "blue";
-
-						form.appendChild(element2);
-						form.appendChild(element3);
-						form.appendChild(element4);
-						form.appendChild(element5);
-
-						document.body.appendChild(form);
-						form.submit();
-
-					}
-					
-				</script>
 			<div class="row row-0-gutter">
 				<!-- start portfolio item -->
-				<div class="col-md-6 col-0-gutter" id="abhishek" onclick="submit_clothing_form()">
+				<div class="col-md-6 col-0-gutter" id="abhishek">
 					<div class="ot-portfolio-item">
 						<figure class="effect-bubba">
 							<!-- the following dont seem working. Tries the code but still the image is not centred.--> 
@@ -227,75 +145,15 @@
 							<figcaption>
 								<h2>Clothing</h2>
 								<p>Dresses</p>
-								<a >View more</a>
-								<!--data-toggle="modal" data-target="#Modal-3"-->
+								<a href="#" data-toggle="modal" data-target="#Modal-3">View more</a>
 							</figcaption>
-						</figure> 
+						</figure>
 					</div>
 				</div>
 				<!-- end portfolio item -->
 			
 			</div>
 			</div><!-- container -->
-
-						<script type="text/javascript">
-					function submit_clothing_form(){
-						var username = "<?php echo $User_Name; ?>";
-						var form = document.createElement("form");
-						var element1 = document.createElement("input");
-						var element2 = document.createElement("input");
-
-						form.method = "POST";
-						form.action = "clothing2.php"; //submit the form to samuel for dummy results
-
-						element1.value = username; //get username from php
-						element1.name = "user_id";
-
-						form.appendChild(element1);
-
-						element2.value = 1;//index of product image
-						element2.name = "product_id";
-
-						form.appendChild(element2);
-
-						document.body.appendChild(form);
-						form.submit();
-
-					}
-					
-				</script>
-
-
-						<script type="text/javascript">
-					function submit_virtual_recommendation(){
-						var username = "<?php echo $User_Name; ?>";
-						var form = document.createElement("form");
-						var element1 = document.createElement("input");
-						var element2 = document.createElement("input");
-
-						form.method = "POST";
-						form.action = "virtual_recommender_new.php"; //submit the form to samuel for dummy results
-
-						element1.value = username; //get username from php
-						element1.name = "user_id";
-
-						form.appendChild(element1);
-
-						element2.value = 1;//index of product image
-						element2.name = "product_id";
-
-						form.appendChild(element2);
-
-						document.body.appendChild(form);
-						form.submit();
-
-					}
-					
-				</script>
-
-
-				</div>
-				
 		</section>
 
 		<section id="about" class="mz-module">
@@ -336,7 +194,7 @@
 					<div class="col-md-3">
 						<div class="team-item">
 							<div class="team-image">
-								<img src="images/developers/rishi_final.jpg" class="img-responsive" alt="author">
+								<img src="images/developers/rishi.jpg" style="height: 200px width:100%;" class="img-responsive" alt="author">
 							</div>
 							<div class="team-text">
 								<h3>Rishi Mahadevan</h3>
@@ -392,8 +250,8 @@
 			</div>
 		</section>
 
-<!-- 		<section id="contact">
- -->			<!-- <div class="container">
+		<section id="contact">
+			<div class="container">
 				<div class="row">
 					<div class="col-lg-12 text-center">
 						<div class="section-title">
@@ -463,7 +321,7 @@
 									<br/>
 									<input type="file" name="file3" onchange="onFileSelected3(event)" class="btn">
 								</div>
-							</div> -->
+							</div>
 <!-- 							<div class="row">
 								<div class="col-md-12">
 									<div class="form-group">
@@ -491,7 +349,7 @@
 							</div>
 							<br> -->
 
-<!-- 
+
 							<br/>
 
 							<div class="row">
@@ -505,7 +363,7 @@
 					</div>
 				</div>
 			</div>
-		</section> -->
+		</section>
 		<p id="back-top">
 			<a href="#top"><i class="fa fa-angle-up"></i></a>
 		</p>
@@ -524,89 +382,7 @@
 						<h4 class="modal-title" id="Modal-label-1">Sunglasses & Spectacles</h4>
 					</div>
 					<div class="modal-body">
-
-<!-- 						<img src="images/glasses/sunglasses1.png" alt="img01" class="img-responsive" /> -->
-						<!-- Slideshow container -->
-<div class="row">
-	<div class="col-md-6">
-		<div class="slideshow-container">
-
-		  <!-- Full-width images with number and caption text -->
-		  <div class="mySlides">
-		    <div class="numbertext">1 / 3</div>
-		    <img src="images/glasses/h.png" style="width:100%">
-		  </div>
-
-		  <div class="mySlides">
-		    <div class="numbertext">2 / 3</div>
-		    <img src="images/glasses/sunglasses.png" style="width:100%">
-		  </div>
-
-		  <div class="mySlides">
-		    <div class="numbertext">3 / 3</div>
-		    <img src="images/glasses/sunglasses1.png" style="width:100%">
-		  </div>
-
-		  <!-- Next and previous buttons -->
-		  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-		  <a class="next" onclick="plusSlides(1)">&#10095;</a>
-		</div>
-		<br>
-
-		<!-- The dots/circles -->
-		<div style="text-align:center">
-		  <span class="dot" onclick="currentSlide(1)"></span> 
-		  <span class="dot" onclick="currentSlide(2)"></span> 
-		  <span class="dot" onclick="currentSlide(3)"></span> 
-		</div>
-	</div>
-	<div class="col-md-6">
-		<p id="glass_name"></p>
-		<p id="glass_cost"></p>
-		<input type="submit" name="try_on_btn" value = "Try On" style="margin-bottom:20px; float:right; margin-right:40px;" class="btn btn-default">
-	</div>
-</div>
-<!-- data for sunglasses -->
-<script> 
-var slideIndex = 1;
-var glass_data = [["Solid Black Glasses", "5.00"], ["Black Sunglasses", "7.00"], ["Night Vision glasses", "20.99"]];
-
-showSlides(slideIndex);
-
-// Next/previous controls
-function plusSlides(n) {
-  showSlides(slideIndex += n);
-}
-
-// Thumbnail image controls
-function currentSlide(n) {
-  showSlides(slideIndex = n);
-}
-
-
-function showSlides(n) {
-  var i;
-  var slides = document.getElementsByClassName("mySlides");
-  var dots = document.getElementsByClassName("dot");
-  if (n > slides.length) {slideIndex = 1} 
-  if (n < 1) {slideIndex = slides.length}
-  for (i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none"; 
-  }
-  for (i = 0; i < dots.length; i++) {
-      dots[i].className = dots[i].className.replace(" active", "");
-  }
-  slides[slideIndex-1].style.display = "block"; 
-  dots[slideIndex-1].className += " active";
-
-  //update content
-  document.getElementById("glass_name").innerHTML = "Name: "+glass_data[slideIndex - 1][0];
-  document.getElementById("glass_cost").innerHTML = "Cost: "+glass_data[slideIndex - 1][1];
-}
-
-</script>
-
-<img src="images/developers/samuel.jpg" class="col-md-12"/>
+						<img src="images/glasses/sunglasses1.png" alt="img01" class="img-responsive" />
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -614,9 +390,6 @@ function showSlides(n) {
 				</div>
 			</div>
 		</div>
-
-
-
 
 		<!-- Modal for portfolio item 2 -->
 		<div class="modal fade" id="Modal-2" tabindex="-1" role="dialog" aria-labelledby="Modal-label-2">
@@ -627,94 +400,7 @@ function showSlides(n) {
 						<h4 class="modal-title" id="Modal-label-2">Lipsticks</h4>
 					</div>
 					<div class="modal-body">
-
-
-
-<div class="row">
-	<div class="col-md-6">
-		<div class="slideshow-container">
-
-		  <!-- Full-width images with number and caption text -->
-		  <div class="mySlidesLipStick">
-		    <div class="numbertext">1 / 4</div>
-		    <img src="images/lipstick/0.png" style="width:100%">
-		  </div>
-
-		  <div class="mySlidesLipStick">
-		    <div class="numbertext">2 / 4</div>
-		    <img src="images/lipstick/2.png" style="width:100%">
-		  </div>
-
-		  <div class="mySlidesLipStick">
-		    <div class="numbertext">3 / 4</div>
-		    <img src="images/lipstick/3.png" style="width:100%">
-		  </div>
-
-		  <div class="mySlidesLipStick">
-		    <div class="numbertext">3 / 4</div>
-		    <img src="images/lipstick/4.png" style="width:100%">
-		  </div>
-
-		  <!-- Next and previous buttons -->
-		  <a class="prev" onclick="plusSlidesLipStick(-1)">&#10094;</a>
-		  <a class="next" onclick="plusSlidesLipStick(1)">&#10095;</a>
-		</div>
-		<br>
-
-		<!-- The dots/circles -->
-		<div style="text-align:center">
-		  <span class="dotLipStick" onclick="currentSlideLipStick(1)"></span> 
-		  <span class="dotLipStick" onclick="currentSlideLipStick(2)"></span> 
-		  <span class="dotLipStick" onclick="currentSlideLipStick(3)"></span> 
-		  <span class="dotLipStick" onclick="currentSlideLipStick(4)"></span> 
-		</div>
-	</div>
-	<div class="col-md-6">
-		<p id="lipstick_name"></p>
-		<p id="lipstick_cost"></p>
-		<input type="submit" name="try_on_btn" value = "Try On" style="margin-bottom:20px; float:right; margin-right:40px;" class="btn btn-default">
-	</div>
-</div>
-
-<!-- data for sunglasses -->
-<script> 
-var slideIndex = 1;
-var lipstick_data = [["Solid Black Glasses", "5.00"], ["Black Sunglasses", "7.00"], ["Night Vision glasses", "20.99"], ["Sexy lipsticks", "Very expensive"]];
-
-showSlidesLipStick(slideIndex);
-
-// Next/previous controls
-function plusSlidesLipStick(n) {
-  showSlidesLipStick(slideIndex += n);
-}
-
-// Thumbnail image controls
-function currentSlideLipStick(n) {
-  showSlidesLipStick(slideIndex = n);
-}
-
-
-function showSlidesLipStick(n) {
-  var i;
-  var slides = document.getElementsByClassName("mySlidesLipStick");
-  var dots = document.getElementsByClassName("dotLipStick");
-  if (n > slides.length) {slideIndex = 1} 
-  if (n < 1) {slideIndex = slides.length}
-  for (i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none"; 
-  }
-  for (i = 0; i < dots.length; i++) {
-      dots[i].className = dots[i].className.replace(" active", "");
-  }
-  slides[slideIndex-1].style.display = "block"; 
-  dots[slideIndex-1].className += " active";
-
-  //update content
-  document.getElementById("lipstick_name").innerHTML = "Name: "+lipstick_data[slideIndex - 1][0];
-  document.getElementById("lipstick_cost").innerHTML = "Cost: "+lipstick_data[slideIndex - 1][1];
-}
-
-</script>
+						<img src="images/lipstick/1.png" alt="img01" class="img-responsive" />
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -732,100 +418,8 @@ function showSlidesLipStick(n) {
 						<h4 class="modal-title" id="Modal-label-3">Dresses</h4>
 					</div>
 					<div class="modal-body">
-
-
-<div class="row">
-	<div class="col-md-6">
-		<div class="slideshow-container">
-
-		  <!-- Full-width images with number and caption text -->
-		  <div class="mySlidesDress">
-		    <div class="numbertext">1 / 5<div>
-		    <img src="images/dress/1.png" style="width:100%">
-		  </div>
-
-		  <div class="mySlidesDress">
-		    <div class="numbertext">2 / 5</div>
-		    <img src="images/dress/2.png" style="width:100%">
-		  </div>
-
-		  <div class="mySlidesDress">
-		    <div class="numbertext">3 / 5</div>
-		    <img src="images/dress/3.png" style="width:100%">
-		  </div>
-
-		  <div class="mySlidesDress">
-		    <div class="numbertext">4 / 5</div>
-		    <img src="images/dress/4.png" style="width:100%">
-		  </div>
-
-		  <div class="mySlidesDress">
-		    <div class="numbertext">5 / 5</div>
-		    <img src="images/dress/5.png" style="width:100%">
-		  </div>
-
-		  <!-- Next and previous buttons -->
-		  <a class="prev" onclick="plusSlidesDress(-1)">&#10094;</a>
-		  <a class="next" onclick="plusSlidesDress(1)">&#10095;</a>
-		</div>
-		<br>
-
-		<!-- The dots/circles -->
-		<div style="text-align:center">
-		  <span class="dotDress" onclick="currentSlideDress(1)"></span> 
-		  <span class="dotDress" onclick="currentSlideDress(2)"></span> 
-		  <span class="dotDress" onclick="currentSlideDress(3)"></span> 
-		  <span class="dotDress" onclick="currentSlideDress(4)"></span>
-		  <span class="dotDress" onclick="currentSlideDress(5)"></span> 
-		</div>
-	</div>
-	<div class="col-md-6">
-		<p id="dress_name"></p>
-		<p id="dress_cost"></p>
-		<input type="submit" name="try_on_btn" value = "Try On" style="margin-bottom:20px; float:right; margin-right:40px;" class="btn btn-default">
-	</div>
-</div>
-
-<!-- data for sunglasses -->
-<script> 
-var slideIndex = 1;
-var dress_data = [["Solid Black Glasses", "5.00"], ["Black Sunglasses", "7.00"], ["Night Vision glasses", "20.99"], ["Sexy lipsticks", "Very expensive"], ['nice dress', 'Extremely Pricey']];
-
-showSlidesDress(slideIndex);
-
-// Next/previous controls
-function plusSlidesDress(n) {
-  showSlidesLipStick(slideIndex += n);
-}
-
-// Thumbnail image controls
-function currentSlideDress(n) {
-  showSlidesLipStick(slideIndex = n);
-}
-
-
-function showSlidesDress(n) {
-  var i;
-  var slides = document.getElementsByClassName("mySlidesDress");
-  var dots = document.getElementsByClassName("dotDress");
-  if (n > slides.length) {slideIndex = 1} 
-  if (n < 1) {slideIndex = slides.length}
-  for (i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none"; 
-  }
-  for (i = 0; i < dots.length; i++) {
-      dots[i].className = dots[i].className.replace(" active", "");
-  }
-  slides[slideIndex-1].style.display = "block"; 
-  dots[slideIndex-1].className += " active";
-
-  //update content
-  document.getElementById("dress_name").innerHTML = "Name: "+dress_data[slideIndex - 1][0];
-  document.getElementById("dress_cost").innerHTML = "Cost: "+dress_data[slideIndex - 1][1];
-}
-
-</script>
-				</div>
+						<img src="images/dress/1.jpg" alt="img01" class="img-responsive" />
+					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 					</div>
@@ -873,24 +467,6 @@ function showSlidesDress(n) {
 			</div>
 		</div>
 
-<!-- 		<div class="bg-new-modal" id="bg-new-modal-id">
-			<div class="modal-new-content">
-				<div class="modal-new-close">+</div>
-				<img src="" alt=""/>
-			</div>
-
-		</div>
-
-		<script type="text/JavaScript">
-			document.getElementById("try_on_btn").addEventListener("click", function(){
-				document.getElementById("bg-new-modal-id").style.display="flex";
-			});
-
-			document.querySelector(".modal-new-close").addEventListener("click", function(){
-				document.querySelector(".bg-new-modal").style.display="none";
-			});
-		</script> -->
-
 		<!-- Bootstrap core JavaScript
 			================================================== -->
 		<!-- Placed at the end of the document so the pages load faster -->
@@ -937,8 +513,6 @@ function onFileSelected3(event) {
 
   reader.readAsDataURL(selectedFile);
 }
-
-
 		</script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/SmoothScroll.js"></script>
